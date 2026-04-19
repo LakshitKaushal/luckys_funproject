@@ -4,9 +4,6 @@ import './App.css';
 
 function App() {
   const [message, setMessage] = useState('');
-  const [hiddenNote, setHiddenNote] = useState('');
-  const [showNote, setShowNote] = useState(false);
-  const [forgiven, setForgiven] = useState(null);
   const [buttonPosition, setButtonPosition] = useState({ top: '50%', left: '50%' });
   const [showForgivenMessage, setShowForgivenMessage] = useState(false);
   const [showSecretMessage, setShowSecretMessage] = useState(false);
@@ -20,7 +17,6 @@ function App() {
     try {
       const response = await axios.get('/api/message');
       setMessage(response.data.mainMessage);
-      setHiddenNote(response.data.hiddenNote);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching message:', error);
@@ -29,7 +25,6 @@ function App() {
   };
 
   const handleForgiveClick = () => {
-    setForgiven(true);
     setShowForgivenMessage(true);
   };
 
@@ -42,7 +37,6 @@ function App() {
 
   const handleBackClick = () => {
     setShowForgivenMessage(false);
-    setForgiven(null);
   };
 
   const handleSecretNoteClick = () => {
